@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-//place controllers below
+const product_controller = require("../controllers/productController");
 
 //PRODUCT ROUTES
+// GET home page.
+router.get("/", product_controller.index);
 
-//GET Inventory home page
+router.get("/products", product_controller.product_list);
+
+module.exports = router;

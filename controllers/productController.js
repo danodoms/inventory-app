@@ -6,17 +6,24 @@ const asyncHandler = require("express-async-handler");
 
 exports.index = asyncHandler(async (req, res, next) => {
   // Get details of books, book instances, authors and genre counts (in parallel)
-  const [numBooks, numBookInstances] = await Promise.all([
-    Book.countDocuments({}).exec(),
-    BookInstance.countDocuments({}).exec(),
+  const [numProducts, numCategories] = await Promise.all([
+    Product.countDocuments({}).exec(),
+    Category.countDocuments({}).exec(),
   ]);
 
   res.render("index", {
-    title: "Inventory",
-    book_count: numBooks,
-    book_instance_count: numBookInstances,
-    book_instance_available_count: numAvailableBookInstances,
-    author_count: numAuthors,
-    genre_count: numGenres,
+    title: "Home",
+    product_count: numProducts,
+    category_count: numCategories,
+  });
+});
+
+exports.product_list = asyncHandler(async (req, res, next) => {
+  // Get details of books, book instances, authors and genre counts (in parallel)
+  const [products] = await Promise.all([Product.find({}).exec()]);
+
+  res.render("product_list", {
+    title: "Products",
+    products: products,
   });
 });

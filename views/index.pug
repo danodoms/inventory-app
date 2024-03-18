@@ -2,4 +2,21 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  p You have #{product_count} products, and #{category_count} categories.
+
+  div.d-flex.gap-3
+    div.card
+      div.card-body
+        div.card-title Products
+        div(class="btn-group" role="group")
+          a(class="btn btn-primary" href="/inventory/products") View
+          a(class="btn btn-secondary" href="/inventory/product/create").btn.btn-secondary Create
+    div.card
+      div.card-body
+        div.card-title Categories
+        div(class="btn-group" role="group")
+          a(class="btn btn-primary" href="/inventory/categories") View
+          a(class="btn btn-secondary" href="/inventory/category/create").btn.btn-secondary Create
+
+
+

@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+
+  div.d-flex.flex-wrap.gap-3
+    each product in products
+        div.card.col-3
+           div.card-body
+                h5.card-title= product.name
+                p.card-text= product.description
+                p.card-text 
+                    b Price: 
+                    = product.price
+                p.card-text
+                    b In stock:
+                    = product.stock
+                a(class="btn btn-primary" href=product.url) Edit
+
